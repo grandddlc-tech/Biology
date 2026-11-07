@@ -34,12 +34,12 @@ Two chapters a week, 38 chapters, same dates (8 Nov 2026 → 20 Mar 2027).
 | Day | Plan |
 |---|---|
 | Sat – Sun | First chapter of the week (2 parts) |
-| Mon – Tue | Second chapter of the week (2 parts) |
-| Wed | Problem solving on both chapters |
+| Mon | Rest |
+| Tue – Wed | Second chapter of the week (2 parts) |
 | Thu | Timed cumulative test of every chapter studied so far |
 | Fri | Active recall of the week + write mistakes in the notebook |
 
-Week 1 starts on Sunday, so its four study days (Sun–Wed) cover the two chapters with no problem-solving day.
+Week 1 starts on Sunday: Sunday covers chapter 1, Tue–Wed chapter 2. The chemistry app uses a blue theme.
 
 ## Android apps (offline)
 - Biology: https://github.com/grandddlc-tech/Biology/releases/latest/download/BiologyPlanner.apk

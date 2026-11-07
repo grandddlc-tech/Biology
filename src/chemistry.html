@@ -6,10 +6,10 @@
 <style>
 /* Layout: a glowing chemistry hero band, a ledger of key figures, a tab strip, then a single calm work surface. */
 :root{
-  --bg:#f5f7f6; --surface:#ffffff; --line:#dde3e0; --line-soft:#ebefed;
-  --fg:#17211d; --muted:#5d6b65; --faint:#8a9690;
-  --accent:#1f6f5c; --accent-soft:#e3f0eb; --accent-fg:#ffffff;
-  --test:#3a5a99; --test-soft:#e6ecf7;
+  --bg:#f4f6fa; --surface:#ffffff; --line:#dbe2ec; --line-soft:#eaeff5;
+  --fg:#141c2b; --muted:#5a6679; --faint:#8893a5;
+  --accent:#1d5fc4; --accent-soft:#e4edfb; --accent-fg:#ffffff;
+  --test:#7a4fb5; --test-soft:#efe8f8;
   --review:#8a5a14; --review-soft:#f6eddc;
   --rest:#6b6f75; --rest-soft:#eef0f1;
   --prac:#7a4fb5; --prac-soft:#efe8f8;
@@ -18,19 +18,19 @@
   --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Inter","Helvetica Neue",system-ui,sans-serif;
   --mono:var(--sans);
   --r:12px;
-  --hero-1:#0b2a21; --hero-2:#04120d; --glow:#3dffa0; --glow-soft:#b9ffd9;
+  --hero-1:#0b1d3a; --hero-2:#040b18; --glow:#3db4ff; --glow-soft:#bfe4ff;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0f1513; --surface:#161e1b; --line:#26312d; --line-soft:#1e2824;
-  --fg:#e4ebe8; --muted:#9aa8a2; --faint:#6f7d77;
-  --accent:#5fbf9f; --accent-soft:#183129; --accent-fg:#0d1a15;
-  --test:#8fa9e0; --test-soft:#1b2438; --review:#d9a957; --review-soft:#2e2414;
+  --bg:#0d1119; --surface:#141a25; --line:#242e3f; --line-soft:#1b2331;
+  --fg:#e3e9f3; --muted:#98a4b8; --faint:#6b778b;
+  --accent:#6aa8ff; --accent-soft:#16233a; --accent-fg:#0a1322;
+  --test:#c4a6f0; --test-soft:#2a2038; --review:#d9a957; --review-soft:#2e2414;
   --rest:#9aa0a6; --rest-soft:#1f2427; --prac:#c4a6f0; --prac-soft:#2a2038; --bad:#e58a8a; --bad-soft:#341c1c; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0f1513; --surface:#161e1b; --line:#26312d; --line-soft:#1e2824;
-  --fg:#e4ebe8; --muted:#9aa8a2; --faint:#6f7d77;
-  --accent:#5fbf9f; --accent-soft:#183129; --accent-fg:#0d1a15;
-  --test:#8fa9e0; --test-soft:#1b2438; --review:#d9a957; --review-soft:#2e2414;
+  --bg:#0d1119; --surface:#141a25; --line:#242e3f; --line-soft:#1b2331;
+  --fg:#e3e9f3; --muted:#98a4b8; --faint:#6b778b;
+  --accent:#6aa8ff; --accent-soft:#16233a; --accent-fg:#0a1322;
+  --test:#c4a6f0; --test-soft:#2a2038; --review:#d9a957; --review-soft:#2e2414;
   --rest:#9aa0a6; --rest-soft:#1f2427; --prac:#c4a6f0; --prac-soft:#2a2038; --bad:#e58a8a; --bad-soft:#341c1c; color-scheme:dark}
 
 *{box-sizing:border-box}
@@ -184,18 +184,18 @@ tr:last-child td{border-bottom:0}
 .toast.show{opacity:1}
 
 /* Hero: a glowing microscope-slide band with a DNA helix, drifting cells and sparkles (same look in both themes) */
-.hero{position:relative;overflow:hidden;border-radius:18px;color:#effff6;
+.hero{position:relative;overflow:hidden;border-radius:18px;color:#f0f7ff;
   background:radial-gradient(120% 140% at 85% 110%,color-mix(in srgb,var(--glow) 28%,transparent) 0,transparent 55%),
-             radial-gradient(90% 120% at 0% 0%,#13402f 0,transparent 60%),linear-gradient(160deg,var(--hero-1),var(--hero-2));
+             radial-gradient(90% 120% at 0% 0%,#12305e 0,transparent 60%),linear-gradient(160deg,var(--hero-1),var(--hero-2));
   box-shadow:0 18px 40px -22px color-mix(in srgb,var(--glow) 70%,transparent)}
 .hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .hero-in{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;padding:24px 24px 92px}
-.hero .sub{color:#a9d9c3}
+.hero .sub{color:#a9c8e6}
 .hero .mark{background:color-mix(in srgb,var(--glow) 18%,transparent);border:1px solid color-mix(in srgb,var(--glow) 45%,transparent);box-shadow:0 0 18px color-mix(in srgb,var(--glow) 45%,transparent)}
 .hero .mark svg{stroke:var(--glow-soft)}
 .hero-count{display:flex;flex-direction:column;align-items:flex-end;line-height:1.1}
 .hero-count b{font-size:44px;font-weight:700;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:#fff;text-shadow:0 0 22px color-mix(in srgb,var(--glow) 80%,transparent)}
-.hero-count span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#a9d9c3}
+.hero-count span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#a9c8e6}
 .spark{position:fixed;width:10px;height:10px;pointer-events:none;z-index:50;background:var(--glow);
   clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);filter:drop-shadow(0 0 4px var(--glow));
   animation:spark .8s cubic-bezier(.2,.7,.3,1) forwards}
@@ -268,7 +268,7 @@ const fromKey = k => { const [y,m,d]=k.split("-").map(Number); return new Date(y
 const diff = (a,b) => Math.round((b-a)/DAY);
 const addDays = (d,n) => new Date(d.getFullYear(),d.getMonth(),d.getDate()+n);
 const today0 = () => { const n=new Date(); return new Date(n.getFullYear(),n.getMonth(),n.getDate()); };
-const TYPE_BY_DOW = {6:"study",0:"study",1:"study",2:"study",3:"study",4:"test",5:"review"};
+const TYPE_BY_DOW = {6:"study",0:"study",1:"rest",2:"study",3:"study",4:"test",5:"review"};
 
 const DEFAULT_CHAPTERS = [
   "Matter: states, properties, pure substances & mixtures",
@@ -324,7 +324,7 @@ const T = {
     startsIn:n=>`The plan starts ${n===1?"tomorrow":"in "+n+" days"}. Here is your first day.`,
     ended:"The plan has finished. Happy Nowruz.",
     thisWeek:"This week", prev:"Previous day", next:"Next day", goToday:"Today",
-    study:(s,n,c)=>[["read",`Ch ${c}: read & annotate — part ${s} of ${n}`,"Textbook section: key definitions, laws and formulas"],["ex","Redo the solved examples","Cover the solution and work each one yourself"],["q","Practice problems","15–20 IMAT-style questions on today's part"]],
+    study:(s,n,c)=>[["read",n==="1"?`Ch ${c}: read & annotate the chapter`:`Ch ${c}: read & annotate — part ${s} of ${n}`,"Textbook section: key definitions, laws and formulas"],["ex","Redo the solved examples","Cover the solution and work each one yourself"],["q","Practice problems","15–20 IMAT-style questions on today's part"]],
     practice:(c)=>[["mixed",`Mixed problems: ${c}`,"Calculations and concept questions from both chapters"],["imat","Timed IMAT-style set on both chapters","20–30 questions, about 1.5 min each"],["gaps","Fill the gaps in your notes","Anything you could not solve today"]],
     test:(n)=>[["test",`Timed test — ${n}`,"Mixed questions from every chapter so far"],["check","Mark answers and find every error","Note why each wrong answer was wrong"]],
     review:(c)=>[["recall",`Active recall: ${c}`,"Blank page: write all you remember, then check"],["mist","Write this week's mistakes in the notebook","From Thursday's test and practice sets"],["weak","Re-study the weak spots","Re-read only the parts you got wrong"]],
@@ -344,7 +344,7 @@ const T = {
     cTitle:"Chapters", cSub:"Two chapters per week. Rename any chapter to match your textbook.", reset:"Restore default names",
     cDone:"Done", cNow:"This week", cNext:"Upcoming",
     syncOn:"Saved to your account", syncOff:"Saved in this browser", saved:"Saved",
-    restDay:"Rest day", note:"Two chapters a week: Sat–Sun first chapter, Mon–Tue second chapter, Wednesday problem solving on both."
+    restDay:"Rest day", note:"Two chapters a week: Sat–Sun first chapter, Tue–Wed second chapter. Monday is a rest day."
   }
 };
 
@@ -367,9 +367,11 @@ const CHAPTER_WEEKS = WEEKS.length - 1; // last week holds only the final day
 const NCH = CHAPTER_WEEKS * 2;           // two chapters per week
 WEEKS.forEach((w,wi)=>{
   if(wi>=CHAPTER_WEEKS) return;
-  let st=w.filter(d=>d.type==="study");
-  if(st.length===5){ st[4].type="practice"; st=st.slice(0,4); } // Wednesday: problem solving on both chapters
-  st.forEach((d,i)=>{ d.ch=wi*2+(i<2?0:1); d.part=i%2+1; d.parts=2; });
+  const st=w.filter(d=>d.type==="study");
+  if(st.length===4){ st.forEach((d,i)=>{ d.ch=wi*2+(i<2?0:1); d.part=i%2+1; d.parts=2; }); } // Sat–Sun, Tue–Wed
+  else { // week 1 starts on Sunday: Sun = first chapter, Tue–Wed = second chapter
+    st.forEach((d,i)=>{ if(i===0){ d.ch=wi*2; d.part=1; d.parts=1; } else { d.ch=wi*2+1; d.part=i; d.parts=st.length-1; } });
+  }
 });
 const pair = wk => `Ch ${wk*2+1} & ${wk*2+2}`;
 const chDays = i => DAYS.filter(d=>d.ch===i);
@@ -530,7 +532,7 @@ function viewToday(){
 function viewSchedule(){
   const t=L(), td=keyOf(today0());
   return `<div class="panel"><div class="panel-h"><div><h2>${t.tabs.schedule}</h2><div class="muted" style="font-size:13px">${t.note}</div></div>
-    <div style="display:flex;gap:6px;flex-wrap:wrap">${["study","practice","test","review"].map(x=>`<span class="chip ${x}">${t.types[x]}</span>`).join("")}</div></div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">${["study","test","review","rest"].map(x=>`<span class="chip ${x}">${t.types[x]}</span>`).join("")}</div></div>
   <div class="weeks">${WEEKS.map((w,wi)=>{
     let n=0,tot=0; w.filter(d=>d.type!=="rest").forEach(d=>{const s=dayStatus(d); n+=s.n; tot+=s.total;});
     const pct=tot?Math.round(n/tot*100):0, now=w.some(d=>d.key===td) || (td<DAYS[0].key&&wi===0);
@@ -691,38 +693,38 @@ function bioCanvas(){
     // atoms with orbiting electrons
     atoms.forEach(a=>{
       const x=a.x*w, y=a.y*h;
-      ctx.fillStyle="rgba(124,255,178,.35)"; ctx.beginPath(); ctx.arc(x,y,3.2,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle="rgba(124,200,255,.35)"; ctx.beginPath(); ctx.arc(x,y,3.2,0,Math.PI*2); ctx.fill();
       for(let k=0;k<3;k++){
-        const rot=a.ph+k*Math.PI/3; ctx.strokeStyle="rgba(124,255,178,.16)"; ctx.lineWidth=1;
+        const rot=a.ph+k*Math.PI/3; ctx.strokeStyle="rgba(124,200,255,.16)"; ctx.lineWidth=1;
         ctx.beginPath(); ctx.ellipse(x,y,a.r,a.r*.38,rot,0,Math.PI*2); ctx.stroke();
         const e=t*.0012*(1+k*.3)+k*2, ex=Math.cos(e)*a.r, ey=Math.sin(e)*a.r*.38;
-        ctx.fillStyle="rgba(185,255,217,.75)"; ctx.beginPath(); ctx.arc(x+ex*Math.cos(rot)-ey*Math.sin(rot),y+ex*Math.sin(rot)+ey*Math.cos(rot),1.8,0,Math.PI*2); ctx.fill();
+        ctx.fillStyle="rgba(191,228,255,.75)"; ctx.beginPath(); ctx.arc(x+ex*Math.cos(rot)-ey*Math.sin(rot),y+ex*Math.sin(rot)+ey*Math.cos(rot),1.8,0,Math.PI*2); ctx.fill();
       }
     });
     // floating molecules
     mols.forEach(m=>{
       const x=m.x*w+Math.sin(t*m.sp+m.ph)*26, y=m.y*h+Math.cos(t*m.sp*1.4+m.ph)*12, r=t*m.sp*1.5+m.ph;
       const pts=m.sh.map(([dx,dy])=>[x+(dx*Math.cos(r)-dy*Math.sin(r))*m.s*1.6, y+(dx*Math.sin(r)+dy*Math.cos(r))*m.s*1.6]);
-      ctx.strokeStyle="rgba(124,255,178,.25)"; ctx.lineWidth=1.6;
+      ctx.strokeStyle="rgba(124,200,255,.25)"; ctx.lineWidth=1.6;
       pts.slice(1).forEach(p=>{ ctx.beginPath(); ctx.moveTo(pts[0][0],pts[0][1]); ctx.lineTo(p[0],p[1]); ctx.stroke(); });
-      pts.forEach((p,i)=>{ ctx.fillStyle=i?"rgba(185,255,217,.22)":"rgba(61,255,160,.28)"; ctx.beginPath(); ctx.arc(p[0],p[1],i?m.s*.32:m.s*.5,0,Math.PI*2); ctx.fill(); });
+      pts.forEach((p,i)=>{ ctx.fillStyle=i?"rgba(191,228,255,.22)":"rgba(61,170,255,.28)"; ctx.beginPath(); ctx.arc(p[0],p[1],i?m.s*.32:m.s*.5,0,Math.PI*2); ctx.fill(); });
     });
     // rising bubbles
-    ctx.fillStyle="rgba(185,255,217,.18)";
+    ctx.fillStyle="rgba(191,228,255,.18)";
     bubbles.forEach(b=>{ const y=((b.y-t*b.sp)%1+1)%1; ctx.beginPath(); ctx.arc(b.x*w,y*h,b.r,0,Math.PI*2); ctx.fill(); });
     // glowing chain of fused benzene rings along the bottom
     const R=Math.min(17,h*.11), dx=Math.sqrt(3)*R, cy=h-R-18, off=(t*.012)%(dx*2);
-    ctx.save(); ctx.shadowColor="#3dffa0"; ctx.shadowBlur=12;
+    ctx.save(); ctx.shadowColor="#3db4ff"; ctx.shadowBlur=12;
     for(let i=-2, x0=-off; x0<w+dx*2; i++, x0+=dx){
       const cx=x0, vs=Array.from({length:6},(_,k)=>[cx+R*Math.cos(Math.PI/6+k*Math.PI/3), cy+R*Math.sin(Math.PI/6+k*Math.PI/3)]);
-      ctx.strokeStyle="rgba(61,255,160,.8)"; ctx.lineWidth=2; ctx.beginPath(); vs.forEach((v,k)=>k?ctx.lineTo(v[0],v[1]):ctx.moveTo(v[0],v[1])); ctx.closePath(); ctx.stroke();
-      if(((i%2)+2)%2===0){ ctx.strokeStyle="rgba(185,255,217,.45)"; ctx.lineWidth=1.4; ctx.beginPath(); ctx.arc(cx,cy,R*.55,0,Math.PI*2); ctx.stroke(); }
-      vs.forEach((v,k)=>{ const g=.5+.5*Math.sin(t*.003+i*1.3+k); ctx.fillStyle=`rgba(185,255,217,${.45+.55*g})`; ctx.beginPath(); ctx.arc(v[0],v[1],2+1.2*g,0,Math.PI*2); ctx.fill(); });
+      ctx.strokeStyle="rgba(61,170,255,.8)"; ctx.lineWidth=2; ctx.beginPath(); vs.forEach((v,k)=>k?ctx.lineTo(v[0],v[1]):ctx.moveTo(v[0],v[1])); ctx.closePath(); ctx.stroke();
+      if(((i%2)+2)%2===0){ ctx.strokeStyle="rgba(191,228,255,.45)"; ctx.lineWidth=1.4; ctx.beginPath(); ctx.arc(cx,cy,R*.55,0,Math.PI*2); ctx.stroke(); }
+      vs.forEach((v,k)=>{ const g=.5+.5*Math.sin(t*.003+i*1.3+k); ctx.fillStyle=`rgba(191,228,255,${.45+.55*g})`; ctx.beginPath(); ctx.arc(v[0],v[1],2+1.2*g,0,Math.PI*2); ctx.fill(); });
     }
     ctx.restore();
     // twinkling sparkles
-    ctx.save(); ctx.shadowColor="#3dffa0"; ctx.shadowBlur=10;
-    stars.forEach(s=>{ const a=.15+.85*Math.pow(Math.abs(Math.sin(t*s.sp+s.ph)),3); ctx.fillStyle=`rgba(207,255,227,${a})`; star(s.x*w,s.y*(h-R*2-30),s.s*(.6+.4*a)); });
+    ctx.save(); ctx.shadowColor="#3db4ff"; ctx.shadowBlur=10;
+    stars.forEach(s=>{ const a=.15+.85*Math.pow(Math.abs(Math.sin(t*s.sp+s.ph)),3); ctx.fillStyle=`rgba(212,236,255,${a})`; star(s.x*w,s.y*(h-R*2-30),s.s*(.6+.4*a)); });
     ctx.restore();
   }
   function loop(t){ draw(t); raf=requestAnimationFrame(loop); }
