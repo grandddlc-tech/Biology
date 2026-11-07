@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the offline web assets for the Android app.
 
-- Writes android/app/src/{bio,chem}/assets/index.html from src/planner.html and src/chemistry.html,
+- Writes android/app/src/{bio,chem,phys}/assets/index.html from src/planner.html, chemistry.html and physics.html,
   replacing the Google Fonts links with the bundled fonts.
 - With --fetch-fonts, downloads the latin Inter font files into
   android/app/src/main/assets/fonts/ (they are committed, so CI does not need this).
@@ -35,7 +35,7 @@ def fetch_fonts():
     (FONTS / "fonts.css").write_text("\n".join(out) + "\n")
     print(f"fetched {len(out)} font files")
 
-APPS = {"bio": "src/planner.html", "chem": "src/chemistry.html"}
+APPS = {"bio": "src/planner.html", "chem": "src/chemistry.html", "phys": "src/physics.html"}
 
 def build_html():
     for flavor, source in APPS.items():

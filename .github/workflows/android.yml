@@ -56,6 +56,7 @@ jobs:
         run: |
           cp android/app/build/outputs/apk/bio/release/app-bio-release.apk BiologyPlanner.apk
           cp android/app/build/outputs/apk/chem/release/app-chem-release.apk ChemistryPlanner.apk
+          cp android/app/build/outputs/apk/phys/release/app-phys-release.apk PhysicsPlanner.apk
 
       - uses: actions/upload-artifact@v4
         with:
@@ -63,6 +64,7 @@ jobs:
           path: |
             BiologyPlanner.apk
             ChemistryPlanner.apk
+            PhysicsPlanner.apk
 
       - name: Publish release
         uses: softprops/action-gh-release@v2
@@ -74,7 +76,9 @@ jobs:
           files: |
             BiologyPlanner.apk
             ChemistryPlanner.apk
+            PhysicsPlanner.apk
           body: |
             Offline Android apps for the IMAT study plans (8 Nov 2026 – 20 Mar 2027).
             BiologyPlanner.apk: biology, one chapter a week.
             ChemistryPlanner.apk: chemistry, two chapters a week.
+            PhysicsPlanner.apk: physics, two chapters a week.
