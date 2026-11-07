@@ -1,0 +1,40 @@
+plugins {
+    id 'com.android.application'
+}
+
+def code = (System.getenv("VERSION_CODE") ?: "1").toInteger()
+
+android {
+    namespace 'tech.grandddlc.biology'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'tech.grandddlc.biology'
+        minSdk 26
+        targetSdk 34
+        versionCode code
+        versionName "1.0.${code}"
+    }
+
+    signingConfigs {
+        release {
+            // Fixed key kept in the repo so every new build installs over the previous one.
+            storeFile file('../keystore/release.jks')
+            storePassword 'biology-planner'
+            keyAlias 'planner'
+            keyPassword 'biology-planner'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
