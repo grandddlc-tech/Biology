@@ -28,6 +28,24 @@ jobs:
       - name: Build offline web assets
         run: python3 scripts/build_android_assets.py
 
+      - name: Prepare signing key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        run: |
+          mkdir -p android/keystore
+          if [ -n "$KEYSTORE_BASE64" ] && [ -n "$KEYSTORE_PASSWORD" ]; then
+            echo "$KEYSTORE_BASE64" | base64 -d > android/keystore/release.jks
+            echo "KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD" >> "$GITHUB_ENV"
+          else
+            echo "::warning::No KEYSTORE_BASE64/KEYSTORE_PASSWORD secrets: signing with a one-off key. Updates will need an uninstall first."
+            PW=$(openssl rand -hex 16)
+            echo "::add-mask::$PW"
+            keytool -genkeypair -keystore android/keystore/release.jks -alias planner -keyalg RSA -keysize 2048 \
+              -validity 10000 -storepass "$PW" -keypass "$PW" -dname "CN=IMAT Biology Planner"
+            echo "KEYSTORE_PASSWORD=$PW" >> "$GITHUB_ENV"
+          fi
+
       - name: Build release APK
         working-directory: android
         env:

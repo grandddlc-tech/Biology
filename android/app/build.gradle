@@ -18,11 +18,11 @@ android {
 
     signingConfigs {
         release {
-            // Fixed key kept in the repo so every new build installs over the previous one.
-            storeFile file('../keystore/release.jks')
-            storePassword 'biology-planner'
-            keyAlias 'planner'
-            keyPassword 'biology-planner'
+            // The keystore is created by CI (never committed); see .github/workflows/android.yml.
+            storeFile file(System.getenv("KEYSTORE_FILE") ?: '../keystore/release.jks')
+            storePassword System.getenv("KEYSTORE_PASSWORD")
+            keyAlias System.getenv("KEY_ALIAS") ?: 'planner'
+            keyPassword System.getenv("KEYSTORE_PASSWORD")
         }
     }
 
