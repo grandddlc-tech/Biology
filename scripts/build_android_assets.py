@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the offline web assets for the Android app.
 
-- Writes android/app/src/main/assets/index.html from src/planner.html,
+- Writes android/app/src/{bio,chem}/assets/index.html from src/planner.html and src/chemistry.html,
   replacing the Google Fonts links with the bundled fonts.
 - With --fetch-fonts, downloads the latin Inter font files into
   android/app/src/main/assets/fonts/ (they are committed, so CI does not need this).
@@ -35,17 +35,22 @@ def fetch_fonts():
     (FONTS / "fonts.css").write_text("\n".join(out) + "\n")
     print(f"fetched {len(out)} font files")
 
+APPS = {"bio": "src/planner.html", "chem": "src/chemistry.html"}
+
 def build_html():
-    src = (ROOT / "src/planner.html").read_text()
-    src = re.sub(r'<link rel="preconnect"[^>]*>\n', "", src)
-    src = re.sub(r'<link rel="stylesheet" href="https://fonts\.googleapis\.com[^>]*>',
-                 '<link rel="stylesheet" href="fonts/fonts.css">', src)
-    assert "googleapis" not in src
-    html = ('<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
-            '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
-            '</head><body>\n' + src + '\n</body></html>\n')
-    (ASSETS / "index.html").write_text(html)
-    print("wrote", ASSETS / "index.html")
+    for flavor, source in APPS.items():
+        src = (ROOT / source).read_text()
+        src = re.sub(r'<link rel="preconnect"[^>]*>\n', "", src)
+        src = re.sub(r'<link rel="stylesheet" href="https://fonts\.googleapis\.com[^>]*>',
+                     '<link rel="stylesheet" href="fonts/fonts.css">', src)
+        assert "googleapis" not in src
+        html = ('<!doctype html>\n<html lang="en"><head><meta charset="utf-8">'
+                '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
+                '</head><body>\n' + src + '\n</body></html>\n')
+        out = ROOT / f"android/app/src/{flavor}/assets/index.html"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(html)
+        print("wrote", out)
 
 if __name__ == "__main__":
     if "--fetch-fonts" in sys.argv:

@@ -9,11 +9,25 @@ android {
     compileSdk 34
 
     defaultConfig {
-        applicationId 'tech.grandddlc.biology'
         minSdk 26
         targetSdk 34
         versionCode code
         versionName "1.0.${code}"
+    }
+
+    // One codebase, two apps that install side by side.
+    flavorDimensions 'subject'
+    productFlavors {
+        bio {
+            dimension 'subject'
+            applicationId 'tech.grandddlc.biology'
+            resValue 'string', 'app_name', 'Biology'
+        }
+        chem {
+            dimension 'subject'
+            applicationId 'tech.grandddlc.chemistry'
+            resValue 'string', 'app_name', 'Chemistry'
+        }
     }
 
     signingConfigs {

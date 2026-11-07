@@ -52,22 +52,29 @@ jobs:
           VERSION_CODE: ${{ github.run_number }}
         run: ./gradlew assembleRelease --no-daemon --stacktrace
 
-      - name: Rename APK
-        run: cp android/app/build/outputs/apk/release/app-release.apk BiologyPlanner.apk
+      - name: Rename APKs
+        run: |
+          cp android/app/build/outputs/apk/bio/release/app-bio-release.apk BiologyPlanner.apk
+          cp android/app/build/outputs/apk/chem/release/app-chem-release.apk ChemistryPlanner.apk
 
       - uses: actions/upload-artifact@v4
         with:
-          name: BiologyPlanner-apk
-          path: BiologyPlanner.apk
+          name: planner-apks
+          path: |
+            BiologyPlanner.apk
+            ChemistryPlanner.apk
 
       - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
-          name: IMAT Biology Planner 1.0.${{ github.run_number }}
+          name: IMAT Planners 1.0.${{ github.run_number }}
           target_commitish: ${{ github.sha }}
           make_latest: "true"
-          files: BiologyPlanner.apk
+          files: |
+            BiologyPlanner.apk
+            ChemistryPlanner.apk
           body: |
-            Offline Android app for the IMAT biology study plan (8 Nov 2026 – 20 Mar 2027).
-            Download BiologyPlanner.apk below and open it on your phone to install.
+            Offline Android apps for the IMAT study plans (8 Nov 2026 – 20 Mar 2027).
+            BiologyPlanner.apk: biology, one chapter a week.
+            ChemistryPlanner.apk: chemistry, two chapters a week.
