@@ -2,9 +2,9 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: one calm working column — a header ledger with the key figures, a tab strip, then a single work surface. */
+/* Layout: a glowing biology hero band, a ledger of key figures, a tab strip, then a single calm work surface. */
 :root{
   --bg:#f5f7f6; --surface:#ffffff; --line:#dde3e0; --line-soft:#ebefed;
   --fg:#17211d; --muted:#5d6b65; --faint:#8a9690;
@@ -13,10 +13,11 @@
   --review:#8a5a14; --review-soft:#f6eddc;
   --rest:#6b6f75; --rest-soft:#eef0f1;
   --bad:#b23b3b; --bad-soft:#f8e6e6;
-  --sans:"IBM Plex Sans","IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --fa:"IBM Plex Sans Arabic","IBM Plex Sans",Tahoma,system-ui,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
-  --r:8px;
+  /* iPhone look: San Francisco on Apple devices, Inter (its closest match) everywhere else */
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Inter","Helvetica Neue",system-ui,sans-serif;
+  --mono:var(--sans);
+  --r:12px;
+  --hero-1:#0b2a21; --hero-2:#04120d; --glow:#3dffa0; --glow-soft:#b9ffd9;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0f1513; --surface:#161e1b; --line:#26312d; --line-soft:#1e2824;
@@ -32,16 +33,14 @@
   --rest:#9aa0a6; --rest-soft:#1f2427; --bad:#e58a8a; --bad-soft:#341c1c; color-scheme:dark}
 
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
-html[lang="fa"] body{font-family:var(--fa)}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;font-feature-settings:"cv11","ss03"}
 .wrap{max-width:980px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:22px}
 h1,h2,h3{margin:0;text-wrap:balance;font-weight:600}
-h1{font-size:22px;letter-spacing:-.01em}
-h2{font-size:17px}
+h1{font-size:24px;letter-spacing:-.022em;font-weight:700}
+h2{font-size:17px;letter-spacing:-.012em}
 h3{font-size:15px}
 .num{font-family:var(--mono);font-variant-numeric:tabular-nums}
 .eyebrow{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
-html[lang="fa"] .eyebrow{letter-spacing:0;text-transform:none;font-size:12.5px}
 .muted{color:var(--muted)}
 button,input,select,textarea{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -52,14 +51,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 .mark{width:38px;height:38px;border-radius:9px;background:var(--accent);display:grid;place-items:center;flex:none}
 .mark svg{width:22px;height:22px}
 .sub{font-size:13px;color:var(--muted)}
-.lang{display:flex;border:1px solid var(--line);border-radius:7px;overflow:hidden;background:var(--surface)}
-.lang button{border:0;background:none;padding:6px 12px;cursor:pointer;font-size:13px;color:var(--muted)}
-.lang button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
 
 .ledger{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
 .ledger > div{padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
 .ledger > div + div{border-inline-start:1px solid var(--line-soft)}
-.ledger .v{font-family:var(--mono);font-size:22px;font-weight:500;font-variant-numeric:tabular-nums}
+.ledger .v{font-family:var(--mono);font-size:24px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .ledger .v small{font-size:13px;color:var(--muted);font-weight:400}
 .bar{height:4px;background:var(--line-soft);border-radius:2px;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--accent);border-radius:2px}
@@ -93,9 +89,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .tasks li{border-top:1px solid var(--line-soft)}
 .tasks li:first-child{border-top:0}
 .task{display:flex;gap:12px;align-items:flex-start;padding:12px 2px;cursor:pointer}
-.task input{appearance:none;width:18px;height:18px;border:1.5px solid var(--faint);border-radius:4px;margin:2px 0 0;flex:none;display:grid;place-items:center;cursor:pointer;background:var(--surface)}
-.task input:checked{background:var(--accent);border-color:var(--accent)}
-.task input:checked::after{content:"";width:9px;height:5px;border:2px solid var(--accent-fg);border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
+.task input{appearance:none;width:22px;height:22px;border:1.5px solid var(--faint);border-radius:50%;transition:box-shadow .2s,background .2s;margin:2px 0 0;flex:none;display:grid;place-items:center;cursor:pointer;background:var(--surface)}
+.task input:checked{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft),0 0 14px color-mix(in srgb,var(--accent) 55%,transparent)}
+.task input:checked::after{content:"";width:10px;height:5px;border:2px solid var(--accent-fg);border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
 .task input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
 .task small{display:block;color:var(--faint);font-size:12.5px;text-decoration:none}
 .side{display:flex;flex-direction:column;gap:14px}
@@ -136,7 +132,6 @@ button,input,select,textarea{font:inherit;color:inherit}
 .wk-prog .bar{width:70px}
 .week.now > summary{background:var(--accent-soft)}
 .days{padding:0 20px 14px 90px;display:flex;flex-direction:column}
-html[dir="rtl"] .days{padding:0 90px 14px 20px}
 .drow{display:grid;grid-template-columns:110px 92px minmax(0,1fr) auto;gap:12px;align-items:center;padding:8px 0;border-top:1px dashed var(--line-soft);font-size:13.5px;cursor:pointer}
 .drow:hover .dtask{color:var(--fg)}
 .drow .ddate{color:var(--muted);font-size:12.5px}
@@ -146,7 +141,7 @@ html[dir="rtl"] .days{padding:0 90px 14px 20px}
 /* Tests */
 table{width:100%;border-collapse:collapse;font-size:14px}
 th{font-weight:500;color:var(--muted);font-size:12px;text-align:start;padding:10px 12px;border-bottom:1px solid var(--line)}
-html[lang="en"] th{text-transform:uppercase;letter-spacing:.06em}
+th{text-transform:uppercase;letter-spacing:.06em}
 td{padding:11px 12px;border-bottom:1px solid var(--line-soft);vertical-align:middle}
 tr:last-child td{border-bottom:0}
 .tablewrap{overflow-x:auto}
@@ -184,15 +179,35 @@ tr:last-child td{border-bottom:0}
 .sync::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--faint);margin-inline-end:6px;vertical-align:1px}
 .sync.on::before{background:var(--accent)}
 .toast{position:fixed;inset-inline-start:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:7px;font-size:13.5px;opacity:0;transition:opacity .2s;pointer-events:none}
-html[dir="rtl"] .toast{transform:translateX(50%)}
 .toast.show{opacity:1}
 
+/* Hero: a glowing microscope-slide band with a DNA helix, drifting cells and sparkles (same look in both themes) */
+.hero{position:relative;overflow:hidden;border-radius:18px;color:#effff6;
+  background:radial-gradient(120% 140% at 85% 110%,color-mix(in srgb,var(--glow) 28%,transparent) 0,transparent 55%),
+             radial-gradient(90% 120% at 0% 0%,#13402f 0,transparent 60%),linear-gradient(160deg,var(--hero-1),var(--hero-2));
+  box-shadow:0 18px 40px -22px color-mix(in srgb,var(--glow) 70%,transparent)}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-in{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;padding:24px 24px 92px}
+.hero .sub{color:#a9d9c3}
+.hero .mark{background:color-mix(in srgb,var(--glow) 18%,transparent);border:1px solid color-mix(in srgb,var(--glow) 45%,transparent);box-shadow:0 0 18px color-mix(in srgb,var(--glow) 45%,transparent)}
+.hero .mark svg{stroke:var(--glow-soft)}
+.hero-count{display:flex;flex-direction:column;align-items:flex-end;line-height:1.1}
+.hero-count b{font-size:44px;font-weight:700;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:#fff;text-shadow:0 0 22px color-mix(in srgb,var(--glow) 80%,transparent)}
+.hero-count span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#a9d9c3}
+.spark{position:fixed;width:10px;height:10px;pointer-events:none;z-index:50;background:var(--glow);
+  clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);filter:drop-shadow(0 0 4px var(--glow));
+  animation:spark .8s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes spark{0%{transform:translate(-50%,-50%) scale(.4)}60%{opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(0) rotate(160deg);opacity:0}}
+
 @media (max-width:760px){
+  .hero-in{padding:20px 18px 84px}
+  .hero-count{align-items:flex-start}
+  .hero-count b{font-size:36px}
   .ledger{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ledger > div:nth-child(3){border-inline-start:0}
   .ledger > div:nth-child(n+3){border-top:1px solid var(--line-soft)}
   .today{grid-template-columns:minmax(0,1fr)}
-  .days,html[dir="rtl"] .days{padding:0 16px 12px}
+  .days{padding:0 16px 12px}
   .drow{grid-template-columns:78px minmax(0,1fr) auto;gap:8px}
   .drow .dtype{display:none}
   .week > summary{grid-template-columns:40px minmax(0,1fr) auto;padding:12px 16px;gap:10px}
@@ -203,23 +218,23 @@ html[dir="rtl"] .toast{transform:translateX(50%)}
   .panel-h,.panel-b{padding-left:16px;padding-right:16px}
   .mitem{padding:14px 16px}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.spark{display:none}}
 </style>
 
 <div class="wrap" id="app">
-  <header class="top">
-    <div class="brand">
-      <div class="mark" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-fg)" stroke-width="1.8" stroke-linecap="round"><path d="M7 3c0 6 10 6 10 12s-10 6-10 6M17 3c0 6-10 6-10 12s10 6 10 6"/><path d="M8.5 7h7M8.5 17h7M10 12h4"/></svg>
+  <header class="hero">
+    <canvas id="bio" aria-hidden="true"></canvas>
+    <div class="hero-in">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M7 3c0 6 10 6 10 12s-10 6-10 6M17 3c0 6-10 6-10 12s10 6 10 6"/><path d="M8.5 7h7M8.5 17h7M10 12h4"/></svg>
+        </div>
+        <div>
+          <h1 id="t-title">IMAT Biology Planner</h1>
+          <div class="sub" id="t-sub"></div>
+        </div>
       </div>
-      <div>
-        <h1 id="t-title">IMAT Biology Planner</h1>
-        <div class="sub" id="t-sub"></div>
-      </div>
-    </div>
-    <div class="lang" role="group" aria-label="Language">
-      <button id="lang-en" type="button" aria-pressed="true">English</button>
-      <button id="lang-fa" type="button" aria-pressed="false">فارسی</button>
+      <div class="hero-count"><b id="hero-left">0</b><span>days to Nowruz</span></div>
     </div>
   </header>
 
@@ -281,7 +296,7 @@ const T = {
     sub:"Study plan · 8 Nov 2026 → 20 Mar 2027",
     range:"Ends 20 March 2027, the day before Nowruz",
     tabs:{today:"Today",schedule:"Schedule",tests:"Tests",mistakes:"Mistake notebook",chapters:"Chapters"},
-    l_day:"Plan day", l_left:"Days to Nowruz", l_prog:"Tasks done", l_avg:"Avg. test score",
+    l_day:"Plan day", l_left:"Chapters done", l_prog:"Tasks done", l_avg:"Avg. test score",
     of:"of", wk:"Week", chapter:"Chapter", chapters:"Chapters",
     types:{study:"Study",test:"Test",review:"Review",rest:"Rest",final:"Final review"},
     dows:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
@@ -308,47 +323,14 @@ const T = {
     cDone:"Done", cNow:"This week", cNext:"Upcoming",
     syncOn:"Saved to your account", syncOff:"Saved in this browser", saved:"Saved",
     restDay:"Rest day", note:"Wednesdays are free for rest or catching up."
-  },
-  fa:{
-    sub:"برنامه مطالعه · ۱۷ آبان ۱۴۰۵ ← ۲۹ اسفند ۱۴۰۵",
-    range:"پایان: ۲۹ اسفند ۱۴۰۵، یک روز قبل از عید",
-    tabs:{today:"امروز",schedule:"برنامه",tests:"آزمون‌ها",mistakes:"دفتر اشتباهات",chapters:"فصل‌ها"},
-    l_day:"روز برنامه", l_left:"روز تا عید", l_prog:"کارهای انجام‌شده", l_avg:"میانگین آزمون",
-    of:"از", wk:"هفته", chapter:"فصل", chapters:"فصل‌ها",
-    types:{study:"مطالعه",test:"آزمون",review:"مرور",rest:"استراحت",final:"مرور نهایی"},
-    dows:["یک","دو","سه","چهار","پنج","جمعه","شنبه"],
-    startsIn:n=>`برنامه ${n===1?"از فردا":n+" روز دیگر"} شروع می‌شود. روز اول را اینجا ببین.`,
-    ended:"برنامه تمام شد. عید مبارک.",
-    thisWeek:"این هفته", prev:"روز قبل", next:"روز بعد", goToday:"امروز",
-    study:(s,n)=>[["read",`خواندن و حاشیه‌نویسی — بخش ${s} از ${n}`,"بخش کتاب، علامت زدن اصطلاحات مهم"],["notes","خلاصه‌نویسی و رسم شکل","یک صفحه، با زبان خودت"],["q","تست تمرینی","۱۵ تا ۲۰ تست سبک آیمت از بخش امروز"]],
-    test:(n)=>[["test",`آزمون زمان‌دار — ${n}`,"تست ترکیبی از همه فصل‌های خوانده‌شده"],["check","تصحیح و پیدا کردن همه اشتباه‌ها","دلیل هر جواب غلط را بنویس"]],
-    review:(c)=>[["recall",`مرور فعال: ${c}`,"روی کاغذ سفید هرچه یادت هست بنویس، بعد چک کن"],["mist","نوشتن اشتباهات هفته در دفتر","از آزمون پنجشنبه و تست‌های تمرینی"],["weak","مطالعه دوباره نقاط ضعف","فقط بخش‌هایی که غلط زدی"]],
-    rest:()=>[["rest","استراحت یا جبران کارهای عقب‌افتاده","اختیاری؛ در پیشرفت حساب نمی‌شود"]],
-    final:()=>[["final","مرور کل دوره: فصل ۱ تا ۱۹","خلاصه همه فصل‌ها را مرور کن"],["mist","خواندن کل دفتر اشتباهات","روی موارد حل‌نشده تمرکز کن"]],
-    chRange:n=> n===1?"فصل ۱":`فصل ۱ تا ${fa(n)}`,
-    score:"نمره", scoreHint:"نمره به درصد", saveScore:"ثبت",
-    weekOf:"هفته", openNotebook:"باز کردن دفتر",
-    tTitle:"آزمون‌های پنجشنبه", tSub:"آزمون تجمعی از همه فصل‌های خوانده‌شده",
-    colDate:"تاریخ", colCovers:"محدوده", colScore:"نمره", noScore:"ثبت نشده",
-    chartTitle:"روند نمره",
-    mTitle:"دفتر اشتباهات", mSub:"هر اشتباه را یک بار بنویس. وقتی بدون کمک جوابش را دادی، حل‌شده علامت بزن.",
-    mWhat:"اشتباه یا سؤال", mFix:"جواب درست / دلیل", mCh:"فصل", add:"افزودن به دفتر",
-    all:"همه فصل‌ها", open:"حل‌نشده", resolved:"حل‌شده", allStatus:"همه",
-    resolve:"حل شد", reopen:"باز کردن", del:"حذف", confirmDel:"تأیید حذف",
-    mEmpty:"هنوز اشتباهی ثبت نشده", mEmptySub:"بعد از آزمون پنجشنبه یا هر تست تمرینی، اولین مورد را اضافه کن.",
-    cTitle:"فصل‌ها", cSub:"هر هفته یک فصل. اسم هر فصل را مطابق کتابت تغییر بده.", reset:"بازگرداندن اسم‌های پیش‌فرض",
-    cDone:"تمام‌شده", cNow:"این هفته", cNext:"آینده",
-    syncOn:"در حساب شما ذخیره می‌شود", syncOff:"در همین مرورگر ذخیره می‌شود", saved:"ذخیره شد",
-    restDay:"روز استراحت", note:"چهارشنبه‌ها برای استراحت یا جبران عقب‌افتادگی آزاد است."
   }
 };
-function fa(n){ return String(n).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]); }
 
 /* ---------- State ---------- */
 let S = { lang:"en", done:{}, scores:{}, mistakes:[], chapters:DEFAULT_CHAPTERS.slice() };
 let tab = "today", cursor = null, mFilter = {ch:"all",st:"all"}, pendingDel = null;
-const L = () => T[S.lang];
-const N = n => S.lang==="fa" ? fa(n) : String(n);
+const L = () => T.en;
+const N = n => String(n);
 const esc = s => String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
 /* ---------- Plan model ---------- */
@@ -393,11 +375,11 @@ function avgScore(){
 /* ---------- Dates ---------- */
 function fmtDate(d, opts){
   const o = opts || {weekday:"long",day:"numeric",month:"long"};
-  const g = new Intl.DateTimeFormat(S.lang==="fa"?"fa-IR-u-ca-persian":"en-GB", o).format(d);
-  const j = new Intl.DateTimeFormat(S.lang==="fa"?"en-GB":"en-u-ca-persian", {day:"numeric",month:"short"}).format(d);
+  const g = new Intl.DateTimeFormat("en-GB", o).format(d);
+  const j = new Intl.DateTimeFormat("en-u-ca-persian", {day:"numeric",month:"short"}).format(d);
   return {main:g, alt:j};
 }
-const shortDate = d => new Intl.DateTimeFormat(S.lang==="fa"?"fa-IR-u-ca-persian":"en-GB",{day:"numeric",month:"short"}).format(d);
+const shortDate = d => new Intl.DateTimeFormat("en-GB",{day:"numeric",month:"short"}).format(d);
 
 /* ---------- Storage: account (db) with browser fallback ---------- */
 let db=null, uid=null, ref=null, synced=false, writing=false, dirty=false, timer=null;
@@ -436,17 +418,16 @@ function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("sho
 
 function renderChrome(){
   const t=L(), html=document.documentElement;
-  html.lang=S.lang; html.dir=S.lang==="fa"?"rtl":"ltr";
-  $("lang-en").setAttribute("aria-pressed",S.lang==="en"); $("lang-fa").setAttribute("aria-pressed",S.lang==="fa");
-  $("t-title").textContent = S.lang==="fa" ? "برنامه زیست آیمت" : "IMAT Biology Planner";
+  html.lang="en"; html.dir="ltr";
   $("t-sub").textContent=t.sub; $("t-range").textContent=t.range;
   $("sync").textContent = synced ? t.syncOn : t.syncOff; $("sync").classList.toggle("on",synced);
 
   const td=today0(), dayNo=Math.min(Math.max(diff(START,td)+1,0),DAYS.length);
-  const left=Math.max(diff(td,NOWRUZ),0), p=progress(), pct=p.t?Math.round(p.n/p.t*100):0, avg=avgScore();
+  const left=Math.max(diff(td,NOWRUZ),0), chDone=WEEKS.slice(0,CHAPTER_WEEKS).filter(w=>w.filter(d=>d.type==="study").every(d=>dayStatus(d).full)).length, p=progress(), pct=p.t?Math.round(p.n/p.t*100):0, avg=avgScore();
+  $("hero-left").textContent=left;
   $("ledger").innerHTML = `
     <div><span class="eyebrow">${t.l_day}</span><span class="v">${N(dayNo)} <small>${t.of} ${N(DAYS.length)}</small></span></div>
-    <div><span class="eyebrow">${t.l_left}</span><span class="v">${N(left)}</span></div>
+    <div><span class="eyebrow">${t.l_left}</span><span class="v">${N(chDone)} <small>${t.of} ${N(CHAPTER_WEEKS)}</small></span></div>
     <div><span class="eyebrow">${t.l_prog}</span><span class="v">${N(pct)}<small>%</small></span><div class="bar"><i style="width:${pct}%"></i></div></div>
     <div><span class="eyebrow">${t.l_avg}</span><span class="v">${avg==null?"—":N(avg)+"<small>%</small>"}</span></div>`;
 
@@ -478,7 +459,7 @@ function viewToday(){
   const strip = [];
   for(let k=0;k<7;k++){
     const date=addDays(WEEK0, d.wk*7+k), key=keyOf(date), dd=DAYS.find(x=>x.key===key);
-    const dow=t.dows[date.getDay()], dnum=S.lang==="fa"?fa(new Intl.DateTimeFormat("en-u-ca-persian",{day:"numeric"}).format(date)):date.getDate();
+    const dow=t.dows[date.getDay()], dnum=date.getDate();
     if(!dd){ strip.push(`<div class="ws out"><span>${dow}</span><b>${dnum}</b><span class="dot"></span></div>`); continue; }
     const s=dayStatus(dd);
     strip.push(`<button type="button" class="ws${dd.key===cursor?" cur":""}${s.full&&dd.type!=="rest"?" done":""}" data-day="${dd.key}" title="${t.types[dd.type]}"><span>${dow}</span><b>${dnum}</b><span class="dot ${dd.type}"></span></button>`);
@@ -488,9 +469,9 @@ function viewToday(){
   <div class="panel">
     <div class="panel-h">
       <div class="nav">
-        <button class="btn ghost" type="button" data-act="prev" ${i===0?"disabled":""} aria-label="${t.prev}">${S.lang==="fa"?"→":"←"}</button>
+        <button class="btn ghost" type="button" data-act="prev" ${i===0?"disabled":""} aria-label="${t.prev}">←</button>
         <button class="btn" type="button" data-act="today">${t.goToday}</button>
-        <button class="btn ghost" type="button" data-act="next" ${i===DAYS.length-1?"disabled":""} aria-label="${t.next}">${S.lang==="fa"?"←":"→"}</button>
+        <button class="btn ghost" type="button" data-act="next" ${i===DAYS.length-1?"disabled":""} aria-label="${t.next}">→</button>
       </div>
       <span class="muted num" style="font-size:12.5px">${t.wk} ${N(d.wk+1)} · ${N(st.n)}/${N(st.total)}</span>
     </div>
@@ -607,9 +588,8 @@ function render(){
 
 /* ---------- Events ---------- */
 document.addEventListener("click",e=>{
-  const el=e.target.closest("[data-tab],[data-day],[data-act],[data-m],#lang-en,#lang-fa");
+  const el=e.target.closest("[data-tab],[data-day],[data-act],[data-m]");
   if(!el) return;
-  if(el.id==="lang-en"||el.id==="lang-fa"){ S.lang=el.id==="lang-en"?"en":"fa"; save(); render(); return; }
   if(el.dataset.tab){ tab=el.dataset.tab; pendingDel=null; render(); return; }
   if(el.dataset.day){ cursor=el.dataset.day; tab="today"; render(); window.scrollTo({top:0}); return; }
   const a=el.dataset.act;
@@ -632,7 +612,9 @@ document.addEventListener("click",e=>{
 document.addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("drow")){ e.preventDefault(); e.target.click(); }});
 document.addEventListener("change",e=>{
   const el=e.target;
-  if(el.dataset.task){ (S.done[cursor] ||= {}); if(el.checked) S.done[cursor][el.dataset.task]=true; else delete S.done[cursor][el.dataset.task];
+  if(el.dataset.task){ (S.done[cursor] ||= {});
+    if(el.checked){ const r=el.getBoundingClientRect(); const d0=DAYS.find(x=>x.key===cursor); const all=tasksFor(d0).every(x=>x[0]===el.dataset.task||isDone(d0,x[0]));
+      burst(r.left+r.width/2, r.top+r.height/2, all?26:12, all?110:56); } if(el.checked) S.done[cursor][el.dataset.task]=true; else delete S.done[cursor][el.dataset.task];
     if(!Object.keys(S.done[cursor]).length) delete S.done[cursor]; save(); render(); }
   if(el.id==="f-ch"){ mFilter.ch=el.value; render(); }
   if(el.id==="f-st"){ mFilter.st=el.value; render(); }
@@ -646,9 +628,72 @@ document.addEventListener("submit",e=>{
   save(); render(); toast(L().saved); const f=$("m-what"); if(f) f.focus();
 });
 
+/* ---------- Sparkles & biology canvas ---------- */
+function burst(x,y,n,dist){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  for(let i=0;i<n;i++){
+    const a=Math.PI*2*i/n+Math.random()*.5, r=dist*(.45+Math.random()*.55), el=document.createElement("span");
+    el.className="spark"; el.style.left=x+"px"; el.style.top=y+"px";
+    el.style.setProperty("--dx",Math.cos(a)*r+"px"); el.style.setProperty("--dy",Math.sin(a)*r+"px");
+    const sz=6+Math.random()*8; el.style.width=el.style.height=sz+"px"; el.style.animationDelay=(Math.random()*80)+"ms";
+    document.body.appendChild(el); setTimeout(()=>el.remove(),1000);
+  }
+}
+function bioCanvas(){
+  const c=$("bio"); if(!c||!c.getContext) return;
+  const ctx=c.getContext("2d"), reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let w=0,h=0,raf=0;
+  let seed=7; const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+  const cells=Array.from({length:8},()=>({x:rnd(),y:rnd()*.8,r:14+rnd()*26,ph:rnd()*6.3,sp:.00015+rnd()*.0002,org:Array.from({length:4},()=>[rnd()*6.3,.45+rnd()*.35])}));
+  const stars=Array.from({length:26},()=>({x:rnd(),y:rnd(),s:2+rnd()*5,ph:rnd()*6.3,sp:.0015+rnd()*.003}));
+  const bubbles=Array.from({length:14},()=>({x:rnd(),y:rnd(),r:1.5+rnd()*3.5,sp:.00004+rnd()*.00008}));
+  function size(){ const dpr=Math.min(window.devicePixelRatio||1,2); w=c.clientWidth; h=c.clientHeight; c.width=Math.round(w*dpr); c.height=Math.round(h*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); }
+  function star(x,y,s){ ctx.beginPath(); ctx.moveTo(x,y-s); ctx.quadraticCurveTo(x,y,x+s,y); ctx.quadraticCurveTo(x,y,x,y+s); ctx.quadraticCurveTo(x,y,x-s,y); ctx.quadraticCurveTo(x,y,x,y-s); ctx.fill(); }
+  function draw(t){
+    ctx.clearRect(0,0,w,h);
+    // drifting cells with nucleus and organelles
+    cells.forEach(k=>{
+      const x=k.x*w+Math.sin(t*k.sp+k.ph)*24, y=k.y*h+Math.cos(t*k.sp*1.3+k.ph)*12;
+      ctx.lineWidth=1.2; ctx.strokeStyle="rgba(124,255,178,.22)"; ctx.fillStyle="rgba(61,255,160,.05)";
+      ctx.beginPath(); ctx.ellipse(x,y,k.r,k.r*.86,k.ph,0,Math.PI*2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle="rgba(124,255,178,.16)"; ctx.beginPath(); ctx.arc(x+k.r*.12,y-k.r*.08,k.r*.32,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle="rgba(185,255,217,.28)"; k.org.forEach(([a,d])=>{ ctx.beginPath(); ctx.arc(x+Math.cos(a+t*k.sp*2)*k.r*d,y+Math.sin(a+t*k.sp*2)*k.r*d*.86,1.6,0,Math.PI*2); ctx.fill(); });
+    });
+    // rising bubbles
+    ctx.fillStyle="rgba(185,255,217,.18)";
+    bubbles.forEach(b=>{ const y=((b.y-t*b.sp)%1+1)%1; ctx.beginPath(); ctx.arc(b.x*w,y*h,b.r,0,Math.PI*2); ctx.fill(); });
+    // glowing DNA helix along the bottom
+    const amp=Math.min(22,h*.14), cy=h-amp-18, step=13, k=.045, sh=t*.0011;
+    ctx.save(); ctx.shadowColor="#3dffa0"; ctx.shadowBlur=12;
+    for(let x=-10;x<w+10;x+=step){
+      const ph=x*k+sh, y1=cy+Math.sin(ph)*amp, y2=cy-Math.sin(ph)*amp;
+      ctx.strokeStyle="rgba(124,255,178,.28)"; ctx.lineWidth=1.4; ctx.beginPath(); ctx.moveTo(x,y1); ctx.lineTo(x,y2); ctx.stroke();
+    }
+    [1,-1].forEach(sg=>{
+      ctx.strokeStyle=sg>0?"rgba(61,255,160,.85)":"rgba(185,255,217,.6)"; ctx.lineWidth=2.2; ctx.beginPath();
+      for(let x=-10;x<=w+10;x+=4){ const y=cy+sg*Math.sin(x*k+sh)*amp; x<=-10?ctx.moveTo(x,y):ctx.lineTo(x,y); } ctx.stroke();
+      for(let x=-10;x<w+10;x+=step){ const ph=x*k+sh, z=Math.cos(ph)*sg, y=cy+sg*Math.sin(ph)*amp;
+        ctx.fillStyle=`rgba(${sg>0?"61,255,160":"185,255,217"},${.45+.55*(z+1)/2})`; ctx.beginPath(); ctx.arc(x,y,2.2+1.4*(z+1)/2,0,Math.PI*2); ctx.fill(); }
+    });
+    ctx.restore();
+    // twinkling sparkles
+    ctx.save(); ctx.shadowColor="#3dffa0"; ctx.shadowBlur=10;
+    stars.forEach(s=>{ const a=.15+.85*Math.pow(Math.abs(Math.sin(t*s.sp+s.ph)),3); ctx.fillStyle=`rgba(207,255,227,${a})`; star(s.x*w,s.y*(h-amp*2-30),s.s*(.6+.4*a)); });
+    ctx.restore();
+  }
+  function loop(t){ draw(t); raf=requestAnimationFrame(loop); }
+  size(); draw(2000);
+  if(window.ResizeObserver) new ResizeObserver(()=>{ size(); draw(performance.now()); }).observe(c);
+  if(reduce) return;
+  raf=requestAnimationFrame(loop);
+  document.addEventListener("visibilitychange",()=>{ cancelAnimationFrame(raf); if(!document.hidden) raf=requestAnimationFrame(loop); });
+}
+
 /* ---------- Boot ---------- */
 merge(lsGet());
+S.lang="en";
 render();
+bioCanvas();
 connect();
 })();
 </script>

@@ -2,7 +2,7 @@
 
 A clean study planner for IMAT biology, from **8 Nov 2026** to **20 Mar 2027** (29 Esfand 1405, the day before Nowruz).
 
-Open `index.html` in a browser. English by default, with a Persian (فارسی) option.
+Open `index.html` in a browser. English only, with an iPhone-style font (San Francisco on Apple devices, Inter elsewhere).
 
 ## Weekly rhythm
 | Day | Plan |
