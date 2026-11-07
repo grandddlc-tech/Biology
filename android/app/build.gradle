@@ -15,7 +15,7 @@ android {
         versionName "1.0.${code}"
     }
 
-    // One codebase, three apps that install side by side.
+    // One codebase, four apps that install side by side.
     flavorDimensions 'subject'
     productFlavors {
         bio {
@@ -32,6 +32,11 @@ android {
             dimension 'subject'
             applicationId 'tech.grandddlc.physics'
             resValue 'string', 'app_name', 'Physics'
+        }
+        math {
+            dimension 'subject'
+            applicationId 'tech.grandddlc.math'
+            resValue 'string', 'app_name', 'Math'
         }
     }
 

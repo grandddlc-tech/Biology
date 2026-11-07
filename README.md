@@ -1,6 +1,6 @@
 # IMAT Planners
 
-Three offline study planners for IMAT: **Biology** (`src/planner.html`, green), **Chemistry** (`src/chemistry.html`, blue) and **Physics** (`src/physics.html`, black).
+Four offline study planners for IMAT: **Biology** (`src/planner.html`, green), **Chemistry** (`src/chemistry.html`, blue), **Physics** (`src/physics.html`, black) and **Math** (`src/math.html`, white).
 
 ## Biology
 
@@ -52,17 +52,30 @@ Two chapters a week, 38 chapters, same dates. Black theme.
 | Thu | Timed cumulative test of every chapter studied so far |
 | Fri | Active recall of the week + write mistakes in the notebook |
 
+## Math
+One chapter a week, 19 chapters, same dates. Always white (also in dark mode).
+
+| Day | Plan |
+|---|---|
+| Sat, Mon, Wed | Study this week's chapter (3 parts) |
+| Sun, Tue | Rest |
+| Thu | Timed cumulative test of every chapter studied so far |
+| Fri | Active recall of the week + write mistakes in the notebook |
+
+Week 1 starts on Sunday, so its chapter is covered on Monday and Wednesday.
+
 ## Android apps (offline)
 - Biology: https://github.com/grandddlc-tech/Biology/releases/latest/download/BiologyPlanner.apk
 - Chemistry: https://github.com/grandddlc-tech/Biology/releases/latest/download/ChemistryPlanner.apk
 - Physics: https://github.com/grandddlc-tech/Biology/releases/latest/download/PhysicsPlanner.apk
+- Math: https://github.com/grandddlc-tech/Biology/releases/latest/download/MathPlanner.apk
 
-Both come from one Android project (`android/`) as three product flavors (`bio`, `chem`, `phys`) and install side by side.
+Both come from one Android project (`android/`) as four product flavors (`bio`, `chem`, `phys`, `math`) and install side by side.
 
 - Works fully offline: the page and fonts are bundled in the app, and it asks for no internet permission.
 - Progress, test scores and the mistake notebook are saved on the phone.
 - Every push that changes `src/`, `android/` or `scripts/` builds a new APK with GitHub Actions
-  (`.github/workflows/android.yml`) and publishes all three APKs as the latest release.
+  (`.github/workflows/android.yml`) and publishes all four APKs as the latest release.
 - Signing: the key is never stored in the repo. Add two repository secrets, `KEYSTORE_BASE64` (a base64 `.jks` with alias `planner`)
   and `KEYSTORE_PASSWORD`, so every build is signed with the same key and updates install over the old version.
   Without them, CI signs each build with a one-off key, and installing a newer build needs an uninstall first (which clears saved progress).
