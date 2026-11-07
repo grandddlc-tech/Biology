@@ -1,6 +1,6 @@
 # IMAT Planners
 
-Five offline study planners for IMAT: **Biology** (`src/planner.html`, green), **Chemistry** (`src/chemistry.html`, blue), **Physics** (`src/physics.html`, black), **Math** (`src/math.html`, white) and **Logic** (`src/logic.html`, pink).
+Six offline study planners for IMAT: **Biology** (`src/planner.html`, green), **Chemistry** (`src/chemistry.html`, blue), **Physics** (`src/physics.html`, black), **Math** (`src/math.html`, white), **Logic** (`src/logic.html`, pink) and **Reading** (`src/reading.html`, red).
 
 ## Biology
 
@@ -76,19 +76,31 @@ One chapter every two weeks, 10 chapters, same dates. Pink theme.
 
 Chapter 1 has 5 parts (week 1 starts on Sunday); chapter 10 gets the last single week (3 parts).
 
+## Reading
+Red theme. Three reading days a week, the other days are free.
+
+| Day | Plan |
+|---|---|
+| Sun | Read one 600–800-word article (BBC Future, Scientific American, The Guardian); from memory write the main idea in one sentence and the author's view (for / against / neutral); add new words to the vocabulary notebook |
+| Tue | One reading passage with its questions (past IMAT first, then IELTS Academic Reading); after marking, find the sentence that proves each right answer |
+| Thu | Review the week's words |
+
+Instead of chapters it has a **Vocabulary** notebook (words by week, mark learned) and an **Articles** log (title, source, main idea, author's view). Tuesday tests record the source (IMAT / IELTS) and score.
+
 ## Android apps (offline)
 - Biology: https://github.com/grandddlc-tech/Biology/releases/latest/download/BiologyPlanner.apk
 - Chemistry: https://github.com/grandddlc-tech/Biology/releases/latest/download/ChemistryPlanner.apk
 - Physics: https://github.com/grandddlc-tech/Biology/releases/latest/download/PhysicsPlanner.apk
 - Math: https://github.com/grandddlc-tech/Biology/releases/latest/download/MathPlanner.apk
 - Logic: https://github.com/grandddlc-tech/Biology/releases/latest/download/LogicPlanner.apk
+- Reading: https://github.com/grandddlc-tech/Biology/releases/latest/download/ReadingPlanner.apk
 
-Both come from one Android project (`android/`) as five product flavors (`bio`, `chem`, `phys`, `math`, `logic`) and install side by side.
+Both come from one Android project (`android/`) as six product flavors (`bio`, `chem`, `phys`, `math`, `logic`, `reading`) and install side by side.
 
 - Works fully offline: the page and fonts are bundled in the app, and it asks for no internet permission.
 - Progress, test scores and the mistake notebook are saved on the phone.
 - Every push that changes `src/`, `android/` or `scripts/` builds a new APK with GitHub Actions
-  (`.github/workflows/android.yml`) and publishes all five APKs as the latest release.
+  (`.github/workflows/android.yml`) and publishes all six APKs as the latest release.
 - Signing: the key is never stored in the repo. Add two repository secrets, `KEYSTORE_BASE64` (a base64 `.jks` with alias `planner`)
   and `KEYSTORE_PASSWORD`, so every build is signed with the same key and updates install over the old version.
   Without them, CI signs each build with a one-off key, and installing a newer build needs an uninstall first (which clears saved progress).

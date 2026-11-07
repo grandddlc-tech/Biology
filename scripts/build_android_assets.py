@@ -35,7 +35,7 @@ def fetch_fonts():
     (FONTS / "fonts.css").write_text("\n".join(out) + "\n")
     print(f"fetched {len(out)} font files")
 
-APPS = {"bio": "src/planner.html", "chem": "src/chemistry.html", "phys": "src/physics.html", "math": "src/math.html", "logic": "src/logic.html"}
+APPS = {"bio": "src/planner.html", "chem": "src/chemistry.html", "phys": "src/physics.html", "math": "src/math.html", "logic": "src/logic.html", "reading": "src/reading.html"}
 
 def build_html():
     for flavor, source in APPS.items():
