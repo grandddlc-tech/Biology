@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Weekly Study Plan</title>
+<link rel="stylesheet" href="../android/app/src/main/assets/fonts/fonts.css">
+<style>
+/* One landscape sheet: subjects as rows, Saturday→Friday as columns, each subject in its app colour. */
+:root{
+  --ink:#16181d; --muted:#6a707c; --faint:#a3a8b2; --line:#e7e9ee; --paper:#ffffff; --bg:#f3f4f7;
+  --bio:#1f6f5c; --bio-s:#e3f0eb;
+  --chem:#1d5fc4; --chem-s:#e4edfb;
+  --phys:#111113; --phys-s:#ececee;
+  --math:#5b6475; --math-s:#f3f4f7;
+  --logic:#d0447f; --logic-s:#fbe4ee;
+  --read:#c8302f; --read-s:#fbe3e2;
+  --test:#7a4fb5; --review:#8a5a14;
+}
+*{box-sizing:border-box;margin:0}
+html,body{background:var(--bg)}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;font-feature-settings:"cv11","ss03"}
+.sheet{width:1600px;height:1131px;margin:0 auto;background:var(--paper);padding:56px 60px 44px;display:flex;flex-direction:column;gap:26px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+h1{font-size:40px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.sub{margin-top:10px;font-size:16px;color:var(--muted)}
+.key{display:flex;gap:18px;font-size:13.5px;color:var(--muted);align-items:center}
+.key i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+table{width:100%;border-collapse:separate;border-spacing:6px;table-layout:fixed;flex:1}
+th{font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:0 6px 4px;text-align:left}
+th.day b{display:block;font-size:20px;letter-spacing:-.01em;text-transform:none;color:var(--ink);font-weight:700}
+th.day.thu b{color:var(--test)} th.day.fri b{color:var(--review)}
+th.subj-h{width:200px}
+td{border-radius:12px;padding:12px 13px;vertical-align:top;font-size:14.5px;line-height:1.35}
+td .t{font-weight:600;font-size:15px;letter-spacing:-.005em}
+td .d{color:var(--muted);font-size:13px;margin-top:3px}
+td.rest{background:repeating-linear-gradient(135deg,#fafbfc 0 8px,#f4f5f8 8px 16px);color:var(--faint);font-size:13.5px;vertical-align:middle;text-align:center}
+td.none{background:transparent}
+.subj{padding:12px 6px 12px 16px;border-radius:12px;position:relative}
+.subj::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:5px;border-radius:3px;background:var(--c)}
+.subj b{display:block;font-size:19px;font-weight:700;letter-spacing:-.015em}
+.subj span{display:block;font-size:13px;color:var(--muted);margin-top:3px}
+.bio{--c:var(--bio);--s:var(--bio-s)} .chem{--c:var(--chem);--s:var(--chem-s)} .phys{--c:var(--phys);--s:var(--phys-s)}
+.math{--c:var(--math);--s:var(--math-s)} .logic{--c:var(--logic);--s:var(--logic-s)} .read{--c:var(--read);--s:var(--read-s)}
+td.on{background:var(--s);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 14%,transparent)}
+td.on .t{color:var(--c)}
+.math td.on{background:#f5f6f8;box-shadow:inset 0 0 0 1px #dfe2e8}
+td.test{background:#f2ecfa;box-shadow:inset 0 0 0 1px #e2d6f3} td.test .t{color:var(--test)}
+td.rev{background:#f8f0e2;box-shadow:inset 0 0 0 1px #eedfc2} td.rev .t{color:var(--review)}
+.chip{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--c);color:#fff;margin-bottom:6px}
+.math .chip{background:var(--math)}
+tfoot td{padding:6px 13px 0;font-size:13px;color:var(--muted);background:none}
+tfoot b{color:var(--ink);font-weight:600}
+footer{display:flex;justify-content:space-between;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:14px}
+</style></head>
+<body>
+<div class="sheet">
+  <header>
+    <div>
+      <h1>Weekly Study Plan</h1>
+      <div class="sub">IMAT · Saturday to Friday · 8 Nov 2026 → 20 Mar 2027 (29 Esfand, the day before Nowruz)</div>
+    </div>
+    <div class="key">
+      <span><i style="background:var(--test)"></i>Thursday: tests</span>
+      <span><i style="background:var(--review)"></i>Friday: active review</span>
+      <span><i style="background:#e6e8ec"></i>Rest</span>
+    </div>
+  </header>
+
+  <table>
+    <thead><tr>
+      <th class="subj-h">Subject</th>
+      <th class="day">Saturday<b>Sat</b></th><th class="day">Sunday<b>Sun</b></th><th class="day">Monday<b>Mon</b></th>
+      <th class="day">Tuesday<b>Tue</b></th><th class="day">Wednesday<b>Wed</b></th><th class="day thu">Thursday<b>Thu</b></th><th class="day fri">Friday<b>Fri</b></th>
+    </tr></thead>
+    <tbody>
+      <tr class="bio">
+        <td><div class="subj"><b>Biology</b><span>1 chapter a week · 19 chapters</span></div></td>
+        <td class="on"><div class="chip">Study</div><div class="t">Part 1 of 4</div><div class="d">Read · notes · 15–20 MCQs</div></td>
+        <td class="on"><div class="chip">Study</div><div class="t">Part 2 of 4</div><div class="d">Read · notes · 15–20 MCQs</div></td>
+        <td class="on"><div class="chip">Study</div><div class="t">Part 3 of 4</div><div class="d">Read · notes · 15–20 MCQs</div></td>
+        <td class="on"><div class="chip">Study</div><div class="t">Part 4 of 4</div><div class="d">Read · notes · 15–20 MCQs</div></td>
+        <td class="rest">Rest</td>
+        <td class="test"><div class="t">Timed test</div><div class="d">All chapters so far</div></td>
+        <td class="rev"><div class="t">Active recall</div><div class="d">Whole week + mistakes in notebook</div></td>
+      </tr>
+      <tr class="chem">
+        <td><div class="subj"><b>Chemistry</b><span>2 chapters a week · 38 chapters</span></div></td>
+        <td class="on"><div class="chip">Chapter A</div><div class="t">Part 1 of 2</div><div class="d">Read · solved examples · problems</div></td>
+        <td class="on"><div class="chip">Chapter A</div><div class="t">Part 2 of 2</div><div class="d">Read · solved examples · problems</div></td>
+        <td class="rest">Rest</td>
+        <td class="on"><div class="chip">Chapter B</div><div class="t">Part 1 of 2</div><div class="d">Read · solved examples · problems</div></td>
+        <td class="on"><div class="chip">Chapter B</div><div class="t">Part 2 of 2</div><div class="d">Read · solved examples · problems</div></td>
+        <td class="test"><div class="t">Timed test</div><div class="d">All chapters so far</div></td>
+        <td class="rev"><div class="t">Active recall</div><div class="d">Chapters A + B · mistakes</div></td>
+      </tr>
+      <tr class="phys">
+        <td><div class="subj"><b>Physics</b><span>2 chapters a week · 38 chapters</span></div></td>
+        <td class="rest">Rest</td>
+        <td class="on"><div class="chip">Chapter A</div><div class="t">Part 1 of 2</div><div class="d">Read · solved examples · problems</div></td>
+        <td class="on"><div class="chip">Chapter A</div><div class="t">Part 2 of 2</div><div class="d">Read · solved examples · problems</div></td>
+        <td class="on"><div class="chip">Chapter B</div><div class="t">Part 1 of 2</div><div class="d">Read · solved examples · problems</div></td>
+        <td class="on"><div class="chip">Chapter B</div><div class="t">Part 2 of 2</div><div class="d">Read · solved examples · problems</div></td>
+        <td class="test"><div class="t">Timed test</div><div class="d">All chapters so far</div></td>
+        <td class="rev"><div class="t">Active recall</div><div class="d">Chapters A + B · mistakes</div></td>
+      </tr>
+      <tr class="math">
+        <td><div class="subj"><b>Math</b><span>1 chapter a week · 19 chapters</span></div></td>
+        <td class="on"><div class="chip">Study</div><div class="t">Part 1 of 3</div><div class="d">Theory · examples · exercises</div></td>
+        <td class="rest">Rest</td>
+        <td class="on"><div class="chip">Study</div><div class="t">Part 2 of 3</div><div class="d">Theory · examples · exercises</div></td>
+        <td class="rest">Rest</td>
+        <td class="on"><div class="chip">Study</div><div class="t">Part 3 of 3</div><div class="d">Theory · examples · exercises</div></td>
+        <td class="test"><div class="t">Timed test</div><div class="d">All chapters so far</div></td>
+        <td class="rev"><div class="t">Active recall</div><div class="d">This week's chapter · mistakes</div></td>
+      </tr>
+      <tr class="logic">
+        <td><div class="subj"><b>Logic</b><span>1 chapter every 2 weeks · 10 chapters</span></div></td>
+        <td class="on"><div class="chip">Study</div><div class="t">Learn the method</div><div class="d">Timed set · check every error</div></td>
+        <td class="rest">Rest</td>
+        <td class="on"><div class="chip">Study</div><div class="t">Learn the method</div><div class="d">Timed set · check every error</div></td>
+        <td class="rest">Rest</td>
+        <td class="on"><div class="chip">Study</div><div class="t">Learn the method</div><div class="d">Timed set · check every error</div></td>
+        <td class="test"><div class="t">Timed test</div><div class="d">All chapters so far</div></td>
+        <td class="rev"><div class="t">Active recall</div><div class="d">Current chapter · mistakes</div></td>
+      </tr>
+      <tr class="read">
+        <td><div class="subj"><b>Reading</b><span>3 sessions a week</span></div></td>
+        <td class="none"></td>
+        <td class="on"><div class="chip">Article</div><div class="t">600–800 words</div><div class="d">Main idea in 1 sentence · author's view · new words</div></td>
+        <td class="none"></td>
+        <td class="on"><div class="chip">Test</div><div class="t">1 passage</div><div class="d">IMAT → IELTS · find the proof for each error</div></td>
+        <td class="none"></td>
+        <td class="on"><div class="chip">Review</div><div class="t">Vocabulary</div><div class="d">This week's words</div></td>
+        <td class="none"></td>
+      </tr>
+    </tbody>
+    <tfoot><tr>
+      <td></td>
+      <td><b>4</b> subjects</td><td><b>4</b> subjects</td><td><b>4</b> subjects</td><td><b>4</b> subjects</td><td><b>4</b> subjects</td><td><b>5</b> tests + vocab</td><td><b>5</b> reviews</td>
+    </tr></tfoot>
+  </table>
+
+  <footer>
+    <span>Week 1 starts on Sunday 8 Nov · Final review on Saturday 20 Mar</span>
+    <span>Each subject has its own app: Biology · Chemistry · Physics · Math · Logic · Reading</span>
+  </footer>
+</div>
+</body></html>
