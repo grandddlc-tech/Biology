@@ -2,6 +2,7 @@ package tech.grandddlc.biology;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -15,6 +16,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         web = new WebView(this);
         web.setBackgroundColor(getResources().getColor(R.color.bg, getTheme()));
+        web.setLayerType(View.LAYER_TYPE_HARDWARE, null); // smooth scrolling and animation on the GPU
 
         WebSettings s = web.getSettings();
         s.setJavaScriptEnabled(true);

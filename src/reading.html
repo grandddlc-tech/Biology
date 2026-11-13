@@ -198,7 +198,7 @@ tr:last-child td{border-bottom:0}
 .hero-count b{font-size:44px;font-weight:700;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:#fff;text-shadow:0 0 22px color-mix(in srgb,var(--glow) 80%,transparent)}
 .hero-count span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#f0b8b6}
 .spark{position:fixed;width:10px;height:10px;pointer-events:none;z-index:50;background:var(--glow);
-  clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);filter:drop-shadow(0 0 4px var(--glow));
+  clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);
   animation:spark .8s cubic-bezier(.2,.7,.3,1) forwards}
 @keyframes spark{0%{transform:translate(-50%,-50%) scale(.4)}60%{opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(0) rotate(160deg);opacity:0}}
 
@@ -259,10 +259,10 @@ tr:last-child td{border-bottom:0}
 "use strict";
 
 /* ---------- Calendar ---------- */
-const START = new Date(2026,10,8);   // first study day (tomorrow)
+const START = new Date(2026,10,14);  // first study day: Saturday 14 Nov 2026
 const END   = new Date(2027,2,20);   // 29 Esfand 1405 — the day before Nowruz
 const NOWRUZ= new Date(2027,2,21);   // 1 Farvardin 1406
-const WEEK0 = new Date(2026,10,7);   // Saturday that opens week 1
+const WEEK0 = new Date(2026,10,14);  // Saturday that opens week 1
 const DAY = 86400000;
 const keyOf = d => d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 const fromKey = k => { const [y,m,d]=k.split("-").map(Number); return new Date(y,m-1,d); };
@@ -296,7 +296,7 @@ const DEFAULT_CHAPTERS = [
 /* ---------- Text ---------- */
 const T = {
   en:{
-    sub:"Study plan · 8 Nov 2026 → 20 Mar 2027",
+    sub:"Study plan · 14 Nov 2026 → 20 Mar 2027",
     range:"Ends 20 March 2027, the day before Nowruz",
     tabs:{today:"Today",schedule:"Schedule",tests:"Tests",mistakes:"Vocabulary",chapters:"Articles"},
     l_day:"Plan day", l_left:"Words saved", l_prog:"Tasks done", l_avg:"Avg. test score",
@@ -630,7 +630,7 @@ document.addEventListener("change",e=>{
   const el=e.target;
   if(el.dataset.task){ (S.done[cursor] ||= {});
     if(el.checked){ const r=el.getBoundingClientRect(); const d0=DAYS.find(x=>x.key===cursor); const all=tasksFor(d0).every(x=>x[0]===el.dataset.task||isDone(d0,x[0]));
-      burst(r.left+r.width/2, r.top+r.height/2, all?26:12, all?110:56); } if(el.checked) S.done[cursor][el.dataset.task]=true; else delete S.done[cursor][el.dataset.task];
+      burst(r.left+r.width/2, r.top+r.height/2, all?16:9, all?100:52); } if(el.checked) S.done[cursor][el.dataset.task]=true; else delete S.done[cursor][el.dataset.task];
     if(!Object.keys(S.done[cursor]).length) delete S.done[cursor]; save(); render(); }
   if(el.id==="f-ch"){ mFilter.ch=el.value; render(); }
   if(el.id==="f-st"){ mFilter.st=el.value; render(); }
@@ -668,8 +668,8 @@ function bioCanvas(){
   const books=Array.from({length:3},()=>({x:.15+rnd()*.7,y:.18+rnd()*.35,s:12+rnd()*8,ph:rnd()*6.3}));
   const lines=[0,1,2].map(r=>{ const words=[]; let x=0; while(x<2400){ const l=14+rnd()*46; words.push([x,l]); x+=l+9; } return {words,len:x,sp:.012+r*.004}; });
   const stars=Array.from({length:26},()=>({x:rnd(),y:rnd(),s:2+rnd()*5,ph:rnd()*6.3,sp:.0015+rnd()*.003}));
-  function size(){ const dpr=Math.min(window.devicePixelRatio||1,2); w=c.clientWidth; h=c.clientHeight; c.width=Math.round(w*dpr); c.height=Math.round(h*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); }
-  function star(x,y,s){ ctx.beginPath(); ctx.moveTo(x,y-s); ctx.quadraticCurveTo(x,y,x+s,y); ctx.quadraticCurveTo(x,y,x,y+s); ctx.quadraticCurveTo(x,y,x-s,y); ctx.quadraticCurveTo(x,y,x,y-s); ctx.fill(); }
+  function size(){ const dpr=Math.min(window.devicePixelRatio||1,1.5); w=c.clientWidth; h=c.clientHeight; c.width=Math.round(w*dpr); c.height=Math.round(h*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); }
+  function star(x,y,s){ const ga=ctx.globalAlpha; ctx.globalAlpha=ga*.28; ctx.beginPath(); ctx.arc(x,y,s*1.15,0,Math.PI*2); ctx.fill(); ctx.globalAlpha=ga; ctx.beginPath(); ctx.moveTo(x,y-s); ctx.quadraticCurveTo(x,y,x+s,y); ctx.quadraticCurveTo(x,y,x,y+s); ctx.quadraticCurveTo(x,y,x-s,y); ctx.quadraticCurveTo(x,y,x,y-s); ctx.fill(); }
   function rr(x,y,w2,h2,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w2,y,x+w2,y+h2,r); ctx.arcTo(x+w2,y+h2,x,y+h2,r); ctx.arcTo(x,y+h2,x,y,r); ctx.arcTo(x,y,x+w2,y,r); ctx.closePath(); }
   function draw(t){
     ctx.clearRect(0,0,w,h);
@@ -692,21 +692,25 @@ function bioCanvas(){
       ln.words.forEach(([x0,l])=>{
         for(const rp of [0,ln.len]){ const x=x0-off+rp; if(x>w||x+l<0) continue;
           const lit=Math.abs((x+l/2)-hx)<70 && r===1;
-          if(lit){ ctx.save(); ctx.shadowColor="#ff4d4d"; ctx.shadowBlur=14; ctx.fillStyle="rgba(255,77,77,.9)"; rr(x-2,y-4,l+4,9,4); ctx.fill(); ctx.restore(); }
+          if(lit){ ctx.save(); ctx.shadowColor="#ff4d4d"; ctx.shadowBlur=6; ctx.fillStyle="rgba(255,77,77,.9)"; rr(x-2,y-4,l+4,9,4); ctx.fill(); ctx.restore(); }
           ctx.fillStyle=lit?"rgba(255,245,245,.95)":"rgba(255,201,199,.32)"; rr(x,y-2.5,l,5,2.5); ctx.fill(); }
       });
     });
     // twinkling sparkles
-    ctx.save(); ctx.shadowColor="#ff4d4d"; ctx.shadowBlur=10;
+    ctx.save(); ctx.shadowColor="#ff4d4d"; ctx.shadowBlur=0;
     stars.forEach(s=>{ const a=.15+.85*Math.pow(Math.abs(Math.sin(t*s.sp+s.ph)),3); ctx.fillStyle=`rgba(255,226,225,${a})`; star(s.x*w,s.y*(h-80),s.s*(.6+.4*a)); });
     ctx.restore();
   }
-  function loop(t){ draw(t); raf=requestAnimationFrame(loop); }
+  // ~30 fps, and only while the banner is on screen and the app is in front: keeps phones cool and smooth
+  let last=0, onScreen=true;
+  function loop(t){ raf=0; if(t-last>=33){ last=t; draw(t); } schedule(); }
+  function schedule(){ if(!raf && onScreen && !document.hidden) raf=requestAnimationFrame(loop); }
   size(); draw(2000);
   if(window.ResizeObserver) new ResizeObserver(()=>{ size(); draw(performance.now()); }).observe(c);
   if(reduce) return;
-  raf=requestAnimationFrame(loop);
-  document.addEventListener("visibilitychange",()=>{ cancelAnimationFrame(raf); if(!document.hidden) raf=requestAnimationFrame(loop); });
+  if(window.IntersectionObserver) new IntersectionObserver(es=>{ onScreen=es[0].isIntersecting; if(!onScreen&&raf){ cancelAnimationFrame(raf); raf=0; } schedule(); }).observe(c);
+  schedule();
+  document.addEventListener("visibilitychange",()=>{ if(document.hidden&&raf){ cancelAnimationFrame(raf); raf=0; } schedule(); });
 }
 
 /* ---------- Boot ---------- */

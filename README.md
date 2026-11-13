@@ -4,7 +4,7 @@ Six offline study planners for IMAT: **Biology** (`src/planner.html`, green), **
 
 ## Biology
 
-A clean study planner for IMAT biology, from **8 Nov 2026** to **20 Mar 2027** (29 Esfand 1405, the day before Nowruz).
+A clean study planner for IMAT biology, from **14 Nov 2026** to **20 Mar 2027** (29 Esfand 1405, the day before Nowruz).
 
 Open `index.html` in a browser. English only, with an iPhone-style font (San Francisco on Apple devices, Inter elsewhere).
 
@@ -16,7 +16,7 @@ Open `index.html` in a browser. English only, with an iPhone-style font (San Fra
 | Thu | Timed cumulative test of every chapter studied so far |
 | Fri | Active recall of the week + write mistakes in the notebook |
 
-19 chapters over 19 weeks, then a final full-course review day on 20 March.
+18 chapters over 18 weeks, then a final full-course review day on 20 March.
 
 ## Features
 - **Today**: tasks for the day with checkboxes, week strip, test score entry on Thursdays
@@ -29,7 +29,7 @@ Progress is saved in the browser (or to your account when opened as a Claude art
 `src/planner.html` is the source; `index.html` wraps it as a standalone page.
 
 ## Chemistry
-Two chapters a week, 38 chapters, same dates (8 Nov 2026 → 20 Mar 2027).
+Two chapters a week, 36 chapters, same dates (14 Nov 2026 → 20 Mar 2027).
 
 | Day | Plan |
 |---|---|
@@ -39,10 +39,9 @@ Two chapters a week, 38 chapters, same dates (8 Nov 2026 → 20 Mar 2027).
 | Thu | Timed cumulative test of every chapter studied so far |
 | Fri | Active recall of the week + write mistakes in the notebook |
 
-Week 1 starts on Sunday: Sunday covers chapter 1, Tue–Wed chapter 2. The chemistry app uses a blue theme.
 
 ## Physics
-Two chapters a week, 38 chapters, same dates. Black theme.
+Two chapters a week, 36 chapters, same dates. Black theme.
 
 | Day | Plan |
 |---|---|
@@ -53,7 +52,7 @@ Two chapters a week, 38 chapters, same dates. Black theme.
 | Fri | Active recall of the week + write mistakes in the notebook |
 
 ## Math
-One chapter a week, 19 chapters, same dates. Always white (also in dark mode).
+One chapter a week, 18 chapters, same dates. Always white (also in dark mode).
 
 | Day | Plan |
 |---|---|
@@ -62,10 +61,9 @@ One chapter a week, 19 chapters, same dates. Always white (also in dark mode).
 | Thu | Timed cumulative test of every chapter studied so far |
 | Fri | Active recall of the week + write mistakes in the notebook |
 
-Week 1 starts on Sunday, so its chapter is covered on Monday and Wednesday.
 
 ## Logic
-One chapter every two weeks, 10 chapters, same dates. Pink theme.
+One chapter every two weeks, 9 chapters, same dates. Pink theme.
 
 | Day | Plan |
 |---|---|
@@ -74,7 +72,6 @@ One chapter every two weeks, 10 chapters, same dates. Pink theme.
 | Thu | Timed cumulative test of every chapter studied so far |
 | Fri | Active recall + write mistakes in the notebook |
 
-Chapter 1 has 5 parts (week 1 starts on Sunday); chapter 10 gets the last single week (3 parts).
 
 ## Reading
 Red theme. Three reading days a week, the other days are free.

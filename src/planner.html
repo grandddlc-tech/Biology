@@ -195,7 +195,7 @@ tr:last-child td{border-bottom:0}
 .hero-count b{font-size:44px;font-weight:700;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:#fff;text-shadow:0 0 22px color-mix(in srgb,var(--glow) 80%,transparent)}
 .hero-count span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#a9d9c3}
 .spark{position:fixed;width:10px;height:10px;pointer-events:none;z-index:50;background:var(--glow);
-  clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);filter:drop-shadow(0 0 4px var(--glow));
+  clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);
   animation:spark .8s cubic-bezier(.2,.7,.3,1) forwards}
 @keyframes spark{0%{transform:translate(-50%,-50%) scale(.4)}60%{opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(0) rotate(160deg);opacity:0}}
 
@@ -256,10 +256,10 @@ tr:last-child td{border-bottom:0}
 "use strict";
 
 /* ---------- Calendar ---------- */
-const START = new Date(2026,10,8);   // first study day (tomorrow)
+const START = new Date(2026,10,14);  // first study day: Saturday 14 Nov 2026
 const END   = new Date(2027,2,20);   // 29 Esfand 1405 — the day before Nowruz
 const NOWRUZ= new Date(2027,2,21);   // 1 Farvardin 1406
-const WEEK0 = new Date(2026,10,7);   // Saturday that opens week 1
+const WEEK0 = new Date(2026,10,14);  // Saturday that opens week 1
 const DAY = 86400000;
 const keyOf = d => d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 const fromKey = k => { const [y,m,d]=k.split("-").map(Number); return new Date(y,m-1,d); };
@@ -281,8 +281,7 @@ const DEFAULT_CHAPTERS = [
   "Mutations, Genetic Disorders & Biotechnology",
   "Evolution & Classification of Living Things",
   "Tissues, Skin & the Musculoskeletal System",
-  "Circulatory System & Blood",
-  "Immune System",
+  "Circulatory & Immune Systems",
   "Respiratory System",
   "Digestive System & Nutrition",
   "Excretory System & Homeostasis",
@@ -293,7 +292,7 @@ const DEFAULT_CHAPTERS = [
 /* ---------- Text ---------- */
 const T = {
   en:{
-    sub:"Study plan · 8 Nov 2026 → 20 Mar 2027",
+    sub:"Study plan · 14 Nov 2026 → 20 Mar 2027",
     range:"Ends 20 March 2027, the day before Nowruz",
     tabs:{today:"Today",schedule:"Schedule",tests:"Tests",mistakes:"Mistake notebook",chapters:"Chapters"},
     l_day:"Plan day", l_left:"Chapters done", l_prog:"Tasks done", l_avg:"Avg. test score",
@@ -307,7 +306,7 @@ const T = {
     test:(n)=>[["test",`Timed test — ${n}`,"Mixed questions from every chapter so far"],["check","Mark answers and find every error","Note why each wrong answer was wrong"]],
     review:(c)=>[["recall",`Active recall: ${c}`,"Blank page: write all you remember, then check"],["mist","Write this week's mistakes in the notebook","From Thursday's test and practice sets"],["weak","Re-study the weak spots","Re-read only the parts you got wrong"]],
     rest:()=>[["rest","Rest, or catch up on unfinished tasks","Optional. Not counted in progress"]],
-    final:()=>[["final","Full-course review: chapters 1–19","Skim summary notes of every chapter"],["mist","Read the whole mistake notebook","Focus on unresolved entries"]],
+    final:()=>[["final","Full-course review: chapters 1–18","Skim summary notes of every chapter"],["mist","Read the whole mistake notebook","Focus on unresolved entries"]],
     chRange:n=> n===1?"chapter 1":`chapters 1–${n}`,
     score:"Score", scoreHint:"Your score in %", saveScore:"Save",
     weekOf:"Week of", openNotebook:"Open notebook",
@@ -614,7 +613,7 @@ document.addEventListener("change",e=>{
   const el=e.target;
   if(el.dataset.task){ (S.done[cursor] ||= {});
     if(el.checked){ const r=el.getBoundingClientRect(); const d0=DAYS.find(x=>x.key===cursor); const all=tasksFor(d0).every(x=>x[0]===el.dataset.task||isDone(d0,x[0]));
-      burst(r.left+r.width/2, r.top+r.height/2, all?26:12, all?110:56); } if(el.checked) S.done[cursor][el.dataset.task]=true; else delete S.done[cursor][el.dataset.task];
+      burst(r.left+r.width/2, r.top+r.height/2, all?16:9, all?100:52); } if(el.checked) S.done[cursor][el.dataset.task]=true; else delete S.done[cursor][el.dataset.task];
     if(!Object.keys(S.done[cursor]).length) delete S.done[cursor]; save(); render(); }
   if(el.id==="f-ch"){ mFilter.ch=el.value; render(); }
   if(el.id==="f-st"){ mFilter.st=el.value; render(); }
@@ -647,8 +646,8 @@ function bioCanvas(){
   const cells=Array.from({length:8},()=>({x:rnd(),y:rnd()*.8,r:14+rnd()*26,ph:rnd()*6.3,sp:.00015+rnd()*.0002,org:Array.from({length:4},()=>[rnd()*6.3,.45+rnd()*.35])}));
   const stars=Array.from({length:26},()=>({x:rnd(),y:rnd(),s:2+rnd()*5,ph:rnd()*6.3,sp:.0015+rnd()*.003}));
   const bubbles=Array.from({length:14},()=>({x:rnd(),y:rnd(),r:1.5+rnd()*3.5,sp:.00004+rnd()*.00008}));
-  function size(){ const dpr=Math.min(window.devicePixelRatio||1,2); w=c.clientWidth; h=c.clientHeight; c.width=Math.round(w*dpr); c.height=Math.round(h*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); }
-  function star(x,y,s){ ctx.beginPath(); ctx.moveTo(x,y-s); ctx.quadraticCurveTo(x,y,x+s,y); ctx.quadraticCurveTo(x,y,x,y+s); ctx.quadraticCurveTo(x,y,x-s,y); ctx.quadraticCurveTo(x,y,x,y-s); ctx.fill(); }
+  function size(){ const dpr=Math.min(window.devicePixelRatio||1,1.5); w=c.clientWidth; h=c.clientHeight; c.width=Math.round(w*dpr); c.height=Math.round(h*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); }
+  function star(x,y,s){ const ga=ctx.globalAlpha; ctx.globalAlpha=ga*.28; ctx.beginPath(); ctx.arc(x,y,s*1.15,0,Math.PI*2); ctx.fill(); ctx.globalAlpha=ga; ctx.beginPath(); ctx.moveTo(x,y-s); ctx.quadraticCurveTo(x,y,x+s,y); ctx.quadraticCurveTo(x,y,x,y+s); ctx.quadraticCurveTo(x,y,x-s,y); ctx.quadraticCurveTo(x,y,x,y-s); ctx.fill(); }
   function draw(t){
     ctx.clearRect(0,0,w,h);
     // drifting cells with nucleus and organelles
@@ -664,7 +663,7 @@ function bioCanvas(){
     bubbles.forEach(b=>{ const y=((b.y-t*b.sp)%1+1)%1; ctx.beginPath(); ctx.arc(b.x*w,y*h,b.r,0,Math.PI*2); ctx.fill(); });
     // glowing DNA helix along the bottom
     const amp=Math.min(22,h*.14), cy=h-amp-18, step=13, k=.045, sh=t*.0011;
-    ctx.save(); ctx.shadowColor="#3dffa0"; ctx.shadowBlur=12;
+    ctx.save(); ctx.shadowColor="#3dffa0"; ctx.shadowBlur=6;
     for(let x=-10;x<w+10;x+=step){
       const ph=x*k+sh, y1=cy+Math.sin(ph)*amp, y2=cy-Math.sin(ph)*amp;
       ctx.strokeStyle="rgba(124,255,178,.28)"; ctx.lineWidth=1.4; ctx.beginPath(); ctx.moveTo(x,y1); ctx.lineTo(x,y2); ctx.stroke();
@@ -677,16 +676,20 @@ function bioCanvas(){
     });
     ctx.restore();
     // twinkling sparkles
-    ctx.save(); ctx.shadowColor="#3dffa0"; ctx.shadowBlur=10;
+    ctx.save(); ctx.shadowColor="#3dffa0"; ctx.shadowBlur=0;
     stars.forEach(s=>{ const a=.15+.85*Math.pow(Math.abs(Math.sin(t*s.sp+s.ph)),3); ctx.fillStyle=`rgba(207,255,227,${a})`; star(s.x*w,s.y*(h-amp*2-30),s.s*(.6+.4*a)); });
     ctx.restore();
   }
-  function loop(t){ draw(t); raf=requestAnimationFrame(loop); }
+  // ~30 fps, and only while the banner is on screen and the app is in front: keeps phones cool and smooth
+  let last=0, onScreen=true;
+  function loop(t){ raf=0; if(t-last>=33){ last=t; draw(t); } schedule(); }
+  function schedule(){ if(!raf && onScreen && !document.hidden) raf=requestAnimationFrame(loop); }
   size(); draw(2000);
   if(window.ResizeObserver) new ResizeObserver(()=>{ size(); draw(performance.now()); }).observe(c);
   if(reduce) return;
-  raf=requestAnimationFrame(loop);
-  document.addEventListener("visibilitychange",()=>{ cancelAnimationFrame(raf); if(!document.hidden) raf=requestAnimationFrame(loop); });
+  if(window.IntersectionObserver) new IntersectionObserver(es=>{ onScreen=es[0].isIntersecting; if(!onScreen&&raf){ cancelAnimationFrame(raf); raf=0; } schedule(); }).observe(c);
+  schedule();
+  document.addEventListener("visibilitychange",()=>{ if(document.hidden&&raf){ cancelAnimationFrame(raf); raf=0; } schedule(); });
 }
 
 /* ---------- Boot ---------- */
